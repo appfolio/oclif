@@ -1,0 +1,36 @@
+name: Sync with oclif/oclif
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout upstream
+        uses: actions/checkout@v3
+        with:
+          repository: 'oclif/oclif'
+          fetch-depth: 0
+          token: ${{ secrets.AF_OTTO_GH_TOKEN }}
+      - name: Set remote to fork
+        run: git remote set-url origin https://github.com/appfolio/oclif.git
+      - name: Rename upstream's "main" branch to "sync"
+        run: git branch -m sync
+      - name: Fetch fork
+        run: git fetch origin sync
+      - name: Push "sync" branch
+        run: git push --force-with-lease origin sync
+      - name: Authenticate GitHub CLI
+        run: echo "${{ secrets.AF_OTTO_GH_TOKEN }}" | gh auth login --with-token
+      - name: Compare and create pull request
+        run: |
+          gh pr create \
+          --title "Sync with upstream" \
+          --body "This is an automated PR to bring this repo up-to-date with [oclif/oclif](//github.com/oclif/oclif)." \
+          --base main \
+          --head sync \
+          --reviewer "@appfolio/developer-experience" \
+          --repo appfolio/oclif
