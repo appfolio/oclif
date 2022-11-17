@@ -1,5 +1,5 @@
 {
-  "name": "oclif",
+  "name": "@appfolio/oclif",
   "description": "oclif: create your own CLI",
   "version": "3.2.27",
   "author": "Salesforce",
