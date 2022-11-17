@@ -21,6 +21,7 @@ jobs:
         run: git branch -m sync
       - name: Fetch fork
         run: git fetch origin sync
+        continue-on-error: true
       - name: Push "sync" branch
         run: git push --force-with-lease origin sync
       - name: Authenticate GitHub CLI
@@ -34,3 +35,4 @@ jobs:
           --head sync \
           --reviewer "@appfolio/developer-experience" \
           --repo appfolio/oclif
+        continue-on-error: true
