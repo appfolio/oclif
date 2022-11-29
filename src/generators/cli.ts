@@ -205,8 +205,8 @@ export default class CLI extends Generator {
     this.pjson.homepage = `https://github.com/${this.repository}`
     this.pjson.bugs = `https://github.com/${this.repository}/issues`
 
-    this.pjson.oclif.bin = this.answers.bin
-    this.pjson.oclif.dirname = this.answers.bin
+    this.pjson.oclif.bin = this.answers.bin || this.pjson.name
+    this.pjson.oclif.dirname = this.answers.bin || this.pjson.name
     this.pjson.bin = {}
     this.pjson.bin[this.pjson.oclif.bin] = './bin/run'
   }
