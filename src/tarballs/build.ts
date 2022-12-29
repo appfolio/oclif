@@ -67,7 +67,7 @@ export async function build(c: BuildConfig, options: {
     if (fs.existsSync(path.join(yarnRoot, 'yarn.lock'))) {
       await fs.copy(path.join(yarnRoot, 'yarn.lock'), path.join(c.workspace(), 'yarn.lock'))
 
-      const yarnVersion = (await exec('yarn', ['-v'])).stdout.charAt(0)
+      const yarnVersion = (await exec('yarn -v')).stdout.charAt(0)
       if (yarnVersion === '1') {
         await exec('yarn --no-progress --production --non-interactive', {cwd: c.workspace()})
       } else {
