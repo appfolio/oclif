@@ -1,5 +1,5 @@
 {
-  "name": "oclif",
+  "name": "@appfolio/oclif",
   "description": "oclif: create your own CLI",
   "version": "3.4.3",
   "author": "Salesforce",
@@ -128,6 +128,7 @@
     "devcli:test": "mocha --forbid-only \"test/unit/*.test.ts\"",
     "devcli": "yarn build --noEmit && yarn run devcli:test && yarn run devcli:lint",
     "lint": "nps lint",
+    "prepare": "yarn build",
     "postpack": "shx rm .oclif.manifest.json",
     "posttest": "yarn run lint",
     "prepack": "shx rm -rf lib && tsc && bin/dev manifest .",
