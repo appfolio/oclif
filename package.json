@@ -1,14 +1,14 @@
 {
   "name": "@appfolio/oclif",
   "description": "oclif: create your own CLI",
-  "version": "3.6.5",
+  "version": "3.7.0",
   "author": "Salesforce",
   "bin": {
     "oclif": "bin/run"
   },
   "bugs": "https://github.com/oclif/oclif/issues",
   "dependencies": {
-    "@oclif/core": "^2.0.3",
+    "@oclif/core": "^2.3.0",
     "@oclif/plugin-help": "^5.1.19",
     "@oclif/plugin-not-found": "^2.3.7",
     "@oclif/plugin-warn-if-update-available": "^2.0.14",
