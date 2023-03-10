@@ -35,7 +35,7 @@ const tests = testTypes.map(type => {
   .map(t => [t.split('.')[0], path.join(base, t)])
   .map(([t, s]) => {
     const mochaString = process.env.CIRCLECI ? `MOCHA_FILE=reports/mocha-${t}.xml ${mocha} --reporter mocha-junit-reporter ${s}` : `${mocha} ${s}`
-    const concurrentlyString = `npx concurrently --kill-others-on-fail --prefix-colors "dim" --prefix "[{name}]" --names "${type}"`
+    const concurrentlyString = `node node_modules/concurrently/dist/bin/concurrently.js --kill-others-on-fail --prefix-colors "dim" --prefix "[{name}]" --names "${type}"`
     return [t, `${concurrentlyString} "${mochaString}"`]
   })
 
