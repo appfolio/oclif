@@ -3,7 +3,9 @@
   "description": "oclif: create your own CLI",
   "version": "3.7.0",
   "author": "Salesforce",
-  "bin": "bin/run",
+  "bin": {
+    "oclif": "bin/run"
+  },
   "bugs": "https://github.com/oclif/oclif/issues",
   "dependencies": {
     "@oclif/core": "^2.3.0",
@@ -131,7 +133,7 @@
     "postpack": "shx rm .oclif.manifest.json",
     "posttest": "yarn run lint",
     "prepack": "shx rm -rf lib && tsc && bin/dev manifest .",
-    "test": "nps test && yarn test:unit",
+    "test": "nps test && yarn test:unit && yarn test:integration",
     "test:integration": "mocha --forbid-only \"test/integration/*.test.ts\"",
     "test:unit": "mocha --forbid-only \"test/unit/*.test.ts\"",
     "version": "bin/dev readme && git add README.md"

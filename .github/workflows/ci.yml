@@ -13,6 +13,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.14.2'
+          cache: yarn
       - run: yarn
       - run: yarn nps lint
       - run: yarn lint
@@ -23,6 +24,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.14.2'
+          cache: yarn
       - run: yarn
       - run: yarn nps test
       - run: yarn test:unit
