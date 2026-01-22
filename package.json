@@ -20,7 +20,7 @@
     "fs-extra": "^8.1",
     "github-slugger": "^1.5.0",
     "got": "^11",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "normalize-package-data": "^3.0.3",
     "semver": "^7.3.8",
     "shelljs": "^0.8.5",
