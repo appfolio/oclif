@@ -95,6 +95,8 @@ const deployPnpmProject = async (c: BuildConfig) => {
   const projectName = packageJson.name
   await emptyDir(c.workspace())
   await exec(`pnpm --filter ${projectName} deploy --prod ${c.workspace()}`, {cwd: workspaceRoot})
+  // Generate oclif manifest in the deployed workspace
+  await exec('npx oclif manifest', {cwd: c.workspace()})
 }
 
 type BuildOptions = {
