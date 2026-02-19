@@ -94,7 +94,10 @@ const deployPnpmProject = async (c: BuildConfig) => {
   const packageJson = await readJSON(path.join(c.root, 'package.json'))
   const projectName = packageJson.name
   await emptyDir(c.workspace())
-  await exec(`pnpm --filter ${projectName} deploy --prod ${c.workspace()}`, {cwd: workspaceRoot})
+  // Use node-linker=hoisted to produce a flat node_modules layout (like npm/yarn).
+  // @oclif/plugin-update's tar extraction ignores symlinks, so pnpm's default
+  // isolated layout (which relies on symlinks) results in missing packages at runtime.
+  await exec(`pnpm --config.node-linker=hoisted --filter ${projectName} deploy --prod ${c.workspace()}`, {cwd: workspaceRoot})
   // Generate oclif manifest in the deployed workspace
   await exec('npx oclif manifest', {cwd: c.workspace()})
 }
